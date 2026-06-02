@@ -1,0 +1,214 @@
+{
+  "graph": {
+    "nodes": [
+      {
+        "id": "project_wabro",
+        "type": "Project",
+        "label": "WABRO Ecosystem"
+      },
+      {
+        "id": "layer_1_instrument",
+        "type": "ArchitectureLayer",
+        "label": "Layer 1 - WABRO Instrument"
+      },
+      {
+        "id": "layer_2_graph",
+        "type": "ArchitectureLayer",
+        "label": "Layer 2 - WABRO Knowledge Graph"
+      },
+      {
+        "id": "layer_3_platform",
+        "type": "ArchitectureLayer",
+        "label": "Layer 3 - Platform"
+      },
+      {
+        "id": "target_backwards_v5",
+        "type": "ProductionTarget",
+        "label": "Backwards V5 Project Template"
+      },
+      {
+        "id": "hardware_muse2",
+        "type": "Hardware",
+        "label": "Muse 2 EEG Headset"
+      },
+      {
+        "id": "script_wabro_hub",
+        "type": "CoreScript",
+        "label": "wabro_hub.py"
+      },
+      {
+        "id": "script_project_watcher",
+        "type": "CoreScript",
+        "label": "tools/wabro_project_watcher.py"
+      },
+      {
+        "id": "data_macro_values",
+        "type": "DataStream",
+        "label": "8 OSC Macro Values"
+      },
+      {
+        "id": "engine_bitwig",
+        "type": "Software",
+        "label": "Bitwig Studio"
+      },
+      {
+        "id": "engine_touchdesigner",
+        "type": "Software",
+        "label": "TouchDesigner"
+      },
+      {
+        "id": "concept_assemblage",
+        "type": "PhilosophicalConcept",
+        "label": "Deleuzian Assemblage"
+      },
+      {
+        "id": "concept_geometric_organism",
+        "type": "VisualConcept",
+        "label": "Geometric Organism"
+      },
+      {
+        "id": "file_state_json",
+        "type": "FileState",
+        "label": "WABRO_STATE.json"
+      },
+      {
+        "id": "file_project_graph",
+        "type": "FileState",
+        "label": "WABRO_PROJECT_GRAPH.json"
+      },
+      {
+        "id": "workflow_ai_council",
+        "type": "ManagementSystem",
+        "label": "AI Council File-Isolated Workflow"
+      },
+      {
+        "id": "snare_transient",
+        "type": "SnareLayer",
+        "label": "Transient (Core Flash)"
+      },
+      {
+        "id": "snare_fundamental",
+        "type": "SnareLayer",
+        "label": "Fundamental (Central Polygon)"
+      },
+      {
+        "id": "snare_harmonic",
+        "type": "SnareLayer",
+        "label": "Harmonic (Orbiting Rings)"
+      },
+      {
+        "id": "snare_noise_1",
+        "type": "SnareLayer",
+        "label": "Noise 1 (Outer Particle Halo)"
+      },
+      {
+        "id": "snare_noise_2",
+        "type": "SnareLayer",
+        "label": "Noise 2 (Inner Granular Cloud)"
+      },
+      {
+        "id": "snare_acoustic",
+        "type": "SnareLayer",
+        "label": "Acoustic (Physical Shell Mesh)"
+      }
+    ],
+    "edges": [
+      {
+        "source": "project_wabro",
+        "target": "layer_1_instrument",
+        "relation": "STRATEGIC_PRIORITY_FIRST"
+      },
+      {
+        "source": "layer_1_instrument",
+        "target": "layer_2_graph",
+        "relation": "PRE_REQUISITE_FOR"
+      },
+      {
+        "source": "layer_2_graph",
+        "target": "layer_3_platform",
+        "relation": "PRE_REQUISITE_FOR"
+      },
+      {
+        "source": "hardware_muse2",
+        "target": "script_wabro_hub",
+        "relation": "PROVIDES_RAW_TELEMETRY_TO"
+      },
+      {
+        "source": "script_wabro_hub",
+        "target": "data_macro_values",
+        "relation": "COMPUTES_AND_OUTPUTS"
+      },
+      {
+        "source": "data_macro_values",
+        "target": "engine_bitwig",
+        "relation": "DRIVES_MACROS_VIA_OSC"
+      },
+      {
+        "source": "data_macro_values",
+        "target": "engine_touchdesigner",
+        "relation": "MUTATES_GEOMETRY_VIA_OSC"
+      },
+      {
+        "source": "data_macro_values",
+        "target": "file_state_json",
+        "relation": "RECORDS_STATE_INTO"
+      },
+      {
+        "source": "script_project_watcher",
+        "target": "file_project_graph",
+        "relation": "AUTOMATICALLY_UPDATES"
+      },
+      {
+        "source": "script_project_watcher",
+        "target": "engine_bitwig",
+        "relation": "MONITORS_SAVE_EVENTS_OF"
+      },
+      {
+        "source": "concept_assemblage",
+        "target": "concept_geometric_organism",
+        "relation": "INFORMS_DESIGN_OF"
+      },
+      {
+        "source": "workflow_ai_council",
+        "target": "project_wabro",
+        "relation": "GOVERNS_DOCUMENTATION_AND_CODE"
+      },
+      {
+        "source": "target_backwards_v5",
+        "target": "layer_1_instrument",
+        "relation": "SERVES_AS_INITIAL_MUTATION_TARGET"
+      },
+      {
+        "source": "data_macro_values",
+        "target": "snare_transient",
+        "relation": "MODULATES"
+      },
+      {
+        "source": "data_macro_values",
+        "target": "snare_fundamental",
+        "relation": "MODULATES"
+      },
+      {
+        "source": "data_macro_values",
+        "target": "snare_harmonic",
+        "relation": "MODULATES"
+      },
+      {
+        "source": "data_macro_values",
+        "target": "snare_noise_1",
+        "relation": "MODULATES"
+      },
+      {
+        "source": "data_macro_values",
+        "target": "snare_noise_2",
+        "relation": "MODULATES"
+      },
+      {
+        "source": "data_macro_values",
+        "target": "snare_acoustic",
+        "relation": "MODULATES"
+      }
+    ]
+  }
+}
+

@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WABRO State Dashboard</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0b0d;
+      --panel: #15171b;
+      --line: #2b2f36;
+      --text: #f3f3f0;
+      --muted: #aeb4bd;
+      --signal: #78e6c0;
+      --pressure: #ff5f6d;
+      --mutation: #b18cff;
+      --gold: #ffd166;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
+    }
+    aside {
+      border-right: 1px solid var(--line);
+      padding: 18px;
+      overflow: auto;
+    }
+    main {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 20px;
+      margin: 0 0 4px;
+      letter-spacing: 0;
+    }
+    .sub {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .status {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .metric, .macro {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 10px;
+    }
+    .metric strong {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .metric span {
+      font-size: 24px;
+      font-weight: 700;
+    }
+    .macro {
+      margin-bottom: 8px;
+    }
+    .macro-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 13px;
+      margin-bottom: 7px;
+    }
+    .bar {
+      height: 8px;
+      background: #090a0c;
+      border-radius: 99px;
+      overflow: hidden;
+      border: 1px solid #22262d;
+    }
+    .fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--signal), var(--mutation), var(--pressure));
+    }
+    #snare {
+      display: block;
+      width: 100%;
+      height: 100vh;
+    }
+    .overlay {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      background: rgba(10, 11, 13, 0.72);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 10px 12px;
+      backdrop-filter: blur(8px);
+    }
+    @media (max-width: 860px) {
+      body { grid-template-columns: 1fr; }
+      aside { border-right: 0; border-bottom: 1px solid var(--line); }
+      main { min-height: 60vh; }
+      #snare { height: 60vh; }
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <h1>WABRO Demo 0.1</h1>
+    <div class="sub">State -> 8 macros -> snare geometry</div>
+    <div class="status">
+      <div class="metric"><strong>State</strong><span id="state">...</span></div>
+      <div class="metric"><strong>Source</strong><span id="source">...</span></div>
+      <div class="metric"><strong>Pressure</strong><span id="pressure">0.00</span></div>
+      <div class="metric"><strong>Signal</strong><span id="signal">0.00</span></div>
+    </div>
+    <div id="macros"></div>
+  </aside>
+  <main>
+    <canvas id="snare"></canvas>
+    <div class="overlay" id="overlay">Waiting for http://localhost:8000/state or http://127.0.0.1:8765/state</div>
+  </main>
+  <script>
+    const macroLabels = [
+      ["snare_fundamental", "Snare Fundamental"],
+      ["snare_noise", "Snare Noise"],
+      ["snare_transient_bite", "Snare Transient Bite"],
+      ["bass_filter_motion", "Bass Filter Motion"],
+      ["bass_distortion", "Bass Distortion"],
+      ["spectral_rotation", "Spectral Rotation"],
+      ["space_width", "Space / Width"],
+      ["glitch_fill_probability", "Glitch / Fill Probability"]
+    ];
+    const endpoints = ["http://localhost:8000/state", "http://127.0.0.1:8765/state"];
+    const macroRoot = document.getElementById("macros");
+    const macroEls = new Map();
+    for (const [key, label] of macroLabels) {
+      const node = document.createElement("div");
+      node.className = "macro";
+      node.innerHTML = `<div class="macro-row"><span>${label}</span><strong>0.00</strong></div><div class="bar"><div class="fill"></div></div>`;
+      macroRoot.appendChild(node);
+      macroEls.set(key, { value: node.querySelector("strong"), fill: node.querySelector(".fill") });
+    }
+    const canvas = document.getElementById("snare");
+    const ctx = canvas.getContext("2d");
+    let latest = null;
+    let t = 0;
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = Math.floor(rect.width * devicePixelRatio);
+      canvas.height = Math.floor(rect.height * devicePixelRatio);
+      ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    }
+    addEventListener("resize", resize);
+    resize();
+    async function fetchState() {
+      for (const endpoint of endpoints) {
+        try {
+          const res = await fetch(endpoint, { cache: "no-store" });
+          if (!res.ok) continue;
+          latest = await res.json();
+          document.getElementById("overlay").textContent = endpoint;
+          updatePanel(latest);
+          return;
+        } catch (_) {}
+      }
+    }
+    function updatePanel(data) {
+      document.getElementById("state").textContent = data.state || "...";
+      document.getElementById("source").textContent = data.source || "...";
+      document.getElementById("pressure").textContent = Number(data.pressure || 0).toFixed(2);
+      document.getElementById("signal").textContent = Number(data.signal || 0).toFixed(2);
+      for (const [key] of macroLabels) {
+        const value = Number(data.macros?.[key] || 0);
+        const el = macroEls.get(key);
+        el.value.textContent = value.toFixed(2);
+        el.fill.style.width = `${Math.max(0, Math.min(1, value)) * 100}%`;
+      }
+    }
+    function polygon(cx, cy, radius, sides, rotation) {
+      ctx.beginPath();
+      for (let i = 0; i < sides; i++) {
+        const a = rotation + i * Math.PI * 2 / sides;
+        const x = cx + Math.cos(a) * radius;
+        const y = cy + Math.sin(a) * radius;
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+    }
+    function draw() {
+      t += 0.016;
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = "#0a0b0d";
+      ctx.fillRect(0, 0, w, h);
+      const m = latest?.macros || {};
+      const g = latest?.snare_geometry || {};
+      const pressure = Number(latest?.pressure || 0.2);
+      const signal = Number(latest?.signal || 0.2);
+      const fundamental = Number(g.fundamental ?? m.snare_fundamental ?? 0.4);
+      const noise = Number(g.noise1 ?? m.snare_noise ?? 0.4);
+      const granular = Number(g.noise2 ?? m.snare_noise ?? 0.4);
+      const bite = Number(g.transient ?? m.snare_transient_bite ?? 0.4);
+      const harmonic = Number(g.harmonic ?? m.spectral_rotation ?? 0.4);
+      const acoustic = Number(g.acoustic ?? m.space_width ?? 0.4);
+      const mutationForce = Number(g.mutation_force ?? m.glitch_fill_probability ?? 0.1);
+      const cx = w / 2;
+      const cy = h / 2;
+      const base = Math.min(w, h) * (0.12 + fundamental * 0.18);
+      const mutation = 1 + pressure * 0.30 + mutationForce * 0.95;
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(t * (0.2 + harmonic));
+      ctx.translate(-cx, -cy);
+      ctx.strokeStyle = `rgba(255, 209, 102, ${0.18 + acoustic * 0.34})`;
+      ctx.lineWidth = 1 + acoustic * 3;
+      for (let r = 1; r <= 4; r++) {
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, base * (1.1 + r * 0.38), base * (0.75 + r * 0.26), t * 0.2 * r, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      ctx.restore();
+      const particles = 80 + Math.floor(noise * 260);
+      for (let i = 0; i < particles; i++) {
+        const a = i * 2.399 + t * (0.2 + harmonic);
+        const rr = base * (1.1 + noise * 3.2 + granular * 0.9) * (0.65 + ((i * 37) % 100) / 100);
+        const wobble = Math.sin(t * 2 + i) * (pressure + mutationForce) * 14;
+        const x = cx + Math.cos(a) * (rr + wobble);
+        const y = cy + Math.sin(a) * (rr + wobble);
+        ctx.fillStyle = `rgba(177, 140, 255, ${0.12 + noise * 0.45})`;
+        ctx.fillRect(x, y, 1.5 + noise * 3, 1.5 + noise * 3);
+      }
+      const sides = 5 + Math.floor(harmonic * 5);
+      polygon(cx, cy, base * mutation, sides, t * (0.4 + harmonic));
+      ctx.fillStyle = `rgba(120, 230, 192, ${0.20 + signal * 0.35})`;
+      ctx.fill();
+      ctx.strokeStyle = `rgba(243, 243, 240, ${0.55 + bite * 0.4})`;
+      ctx.lineWidth = 2 + bite * 7;
+      ctx.stroke();
+      const flash = bite * (0.35 + 0.65 * Math.abs(Math.sin(t * 7)));
+      ctx.beginPath();
+      ctx.arc(cx, cy, base * (0.18 + flash), 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 95, 109, ${flash * 0.8})`;
+      ctx.fill();
+      requestAnimationFrame(draw);
+    }
+    setInterval(fetchState, 250);
+    fetchState();
+    draw();
+  </script>
+</body>
+</html>

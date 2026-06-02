@@ -1,0 +1,35 @@
+{
+  "timestamp": "2026-06-02T17:49:54",
+  "state": "Signal",
+  "pressure": 0.3074,
+  "signal": 0.6887,
+  "source": "sim",
+  "current_goal": "Build EEG to Bitwig bridge",
+  "active_project": "Backwards V5",
+  "eeg": {
+    "alpha": 0.442166,
+    "beta": 0.114074,
+    "delta": 0.03121,
+    "gamma": 0.086435,
+    "theta": 0.2228
+  },
+  "macros": {
+    "snare_fundamental": 0.6286,
+    "snare_noise": 0.4514,
+    "snare_transient_bite": 0.4686,
+    "bass_filter_motion": 0.4869,
+    "bass_distortion": 0.3927,
+    "spectral_rotation": 0.3789,
+    "space_width": 0.6458,
+    "glitch_fill_probability": 0.1881
+  },
+  "snare_geometry": {
+    "transient": 0.4341,
+    "fundamental": 0.5248,
+    "harmonic": 0.3629,
+    "noise1": 0.4177,
+    "noise2": 0.4147,
+    "acoustic": 0.4657,
+    "mutation_force": 0.276
+  }
+}
