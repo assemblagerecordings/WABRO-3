@@ -1,0 +1,416 @@
+WABRO X ASSEMBLAGE - PROJECT EXPLANATION FOR GOOGLE AI
+Generated: 2026-06-05
+
+This is a standalone explanation. The AI reading this will not have access to my files, folders, music projects, code, stems, or previous chats. Please understand the project from this text alone.
+
+
+1. SHORT VERSION
+
+WABRO X ASSEMBLAGE is my attempt to build a living creative operating system for electronic music.
+
+It starts from my own real music projects, especially neurofunk / drum and bass work made in Bitwig and Ableton. The goal is not to ask AI to generate generic music from scratch. The goal is to make an AI-assisted system that understands my existing tracks, snares, basses, plugin chains, project saves, stems, research, visuals, and performance ideas, then helps mutate and extend them.
+
+The central idea is:
+
+Track = DNA
+AI = Mutation Engine
+EEG / brain-state = live modulation source
+Bitwig + visuals = responsive body
+Archive = memory
+Platform = shared mutation field
+
+The first practical milestone is to make one track become a playable living instrument:
+
+Backwards V5 + Muse 2 EEG or simulator + 8 Bitwig macro controls + snare geometry visualiser + persistent state/logs.
+
+The long-term ambition is to create a new kind of open music platform where songs are not just audio files. They are living systems with stems, project context, visual worlds, state data, remix/mutation logic, and attribution.
+
+
+2. WHAT I AM BUILDING
+
+I am building WABRO as three connected layers.
+
+Layer 1: WABRO Instrument
+
+This is the first and most important layer. It is a working creative instrument where a track can be controlled by brain-state or simulated state data.
+
+The current target is:
+
+Muse 2 EEG headset or simulator
+-> state engine
+-> 8 musical macro controls
+-> Bitwig project
+-> snare / bass / spectral mutation
+-> visualiser
+-> saved state and logs
+
+If this layer works, WABRO becomes playable.
+
+Layer 2: WABRO Knowledge Graph
+
+After the instrument works, I want the system to understand my creative archive:
+
+- Bitwig projects
+- Ableton projects
+- stems
+- renders
+- samples
+- plugin chains
+- snare layers
+- visual experiments
+- TouchDesigner patches
+- Pure Data / PlugData patches
+- Max for Live devices
+- university essays and research
+- AI conversations
+- release and social context
+
+The goal is that the archive can explain itself. Future AI systems should be able to answer questions like:
+
+- Which project save belongs to which track?
+- Which snares, basses, stems, and samples define my sound?
+- Which plugin chains are important?
+- Which visual experiments relate to which tracks?
+- Which files show the development of a track over time?
+- What should be mutated next?
+
+Layer 3: Public Platform
+
+The long-term dream is a public open music mutation platform.
+
+It would be somewhere between:
+
+- SoundCloud
+- GitHub
+- TouchDesigner
+- Discord
+- Twitch
+- a biofeedback performance instrument
+- an AI creative laboratory
+
+People could upload or connect a track, attach stems and project context, preserve attribution, and let AI-generated audiovisual systems evolve from the music.
+
+But I do not want to jump straight to the platform. The correct order is:
+
+Instrument first.
+Knowledge graph second.
+Platform third.
+
+
+3. WHAT MAKES THIS DIFFERENT FROM GENERIC AI MUSIC
+
+This is not "generate me a neurofunk song."
+
+I am not trying to replace my creative identity with an AI model. I am trying to build a system that understands and mutates my real musical material.
+
+The source material is my own:
+
+- tracks
+- snares
+- bass design
+- drum processing
+- arrangements
+- project files
+- mix decisions
+- visual experiments
+- research
+- live control systems
+- state and EEG experiments
+
+The AI should act more like a mutation engine, archivist, collaborator, analyst, and control-system assistant.
+
+It should help me build systems that make my music more alive, not flatten it into generic output.
+
+
+4. CREATIVE COMMONS AND OPEN MUSIC
+
+My WABRO music is released under Creative Commons Attribution.
+
+This means people can remix, mutate, rebuild, study, and learn from the work as long as they credit WABRO.
+
+This is not just a licence detail. It is part of the philosophy.
+
+I want WABRO to become an open-source style music ecosystem where attribution survives mutation.
+
+The long-term platform should allow people to fork, remix, mutate, and rebuild tracks while keeping credit and lineage visible.
+
+
+5. THE FIRST PLAYABLE SYSTEM
+
+The current practical build is:
+
+Backwards V5
++ Muse 2 EEG headset or simulator
++ 8 macro controls
++ WABRO snare geometry
++ persistent state and logs
+
+Backwards V5 is one of my Bitwig projects and is the first target for mutation.
+
+The state engine should produce states such as:
+
+- Signal
+- Pressure
+- Mutation
+- Collapse
+
+The state engine should not directly control random plugin parameters. It should convert messy input data into stable, playable macro values.
+
+Possible inputs:
+
+- alpha
+- beta
+- gamma
+- theta
+- delta
+- blink
+- jaw clench
+- motion or other sensor data if available
+
+Important: I do not want to overclaim that EEG directly detects emotions. It is better to call this brain-state, affective-state, pressure-state, or performance-state mapping.
+
+
+6. THE FIRST 8 MACROS
+
+The first version should use 8 macro controls:
+
+1. Snare Fundamental
+2. Snare Noise
+3. Snare Transient Bite
+4. Bass Filter Motion
+5. Bass Distortion
+6. Spectral Rotation
+7. Space / Width
+8. Glitch / Fill Probability
+
+These macros should control large musical ideas, not every tiny parameter.
+
+For example:
+
+- more pressure can increase bass distortion, transient bite, or density
+- more signal/coherence can open space or stabilise the geometry
+- mutation can increase spectral rotation or fill probability
+- collapse can reduce clarity, narrow space, or deform the visual system
+
+The goal is a playable system, not chaos.
+
+
+7. THE WABRO SNARE SYSTEM
+
+The WABRO snare is one of the most important parts of the project.
+
+I think of it as both an audio object and a visual/algorithmic object.
+
+The conceptual layers are:
+
+- acoustic snare
+- microphone routing
+- synth reinforcement
+- fundamental/body layer
+- harmonic layer
+- noise layer 1
+- noise layer 2
+- transient/bite
+- final combined snare object
+
+The visualiser should not just be a waveform. It should be a geometric organism representing the snare's structure, pressure, energy, and mutation.
+
+Possible mapping:
+
+Transient = central flash / sharp edge
+Fundamental = core polygon / body mass
+Harmonic = orbiting rings
+Noise 1 = outer particle halo
+Noise 2 = inner granular cloud
+Acoustic layer = organic shell mesh
+Pressure = deformation force
+Signal = coherence / clarity
+
+The snare is the first bridge between audio ontology, visuals, and brain-state control.
+
+
+8. PRIORITY MUSIC WORKS
+
+The first works that define my "Luke Grammar" are:
+
+1. Gentle Whisper
+2. Carnage
+3. Underground
+4. Backwards
+5. Back And Fourth
+6. Synchronicity
+7. Interpolation
+8. The WABRO snare system
+
+These are not just tracks. They are references for:
+
+- snare architecture
+- bass movement
+- density and pressure
+- melodic/emotional contrast
+- mix translation
+- arrangement grammar
+- visual geometry
+- state-controlled mutation
+- collaboration/version lineage
+- open-source remix logic
+
+The first analysis order should probably be:
+
+1. Backwards
+2. WABRO snare system
+3. Carnage
+4. Underground
+5. Gentle Whisper
+6. Back And Fourth
+7. Interpolation
+8. Synchronicity
+
+
+9. VISUAL PHILOSOPHY
+
+The visuals should not be generic audio-reactive visuals.
+
+They should feel like a living geometric body made from the track's structure.
+
+The theory behind the project has a Deleuzian / assemblage influence: the music, archive, state engine, visual system, and AI agents are not separate decorations. They are parts of one connected organism.
+
+The visual system should express:
+
+- tension
+- pressure
+- collapse
+- signal clarity
+- mutation
+- snare energy
+- bass motion
+- spectral movement
+- arrangement density
+
+The first visual target is the snare geometry. Later the whole track can become a larger geometric world.
+
+
+10. THE ARCHIVE
+
+My archive is huge and contains years of music, experiments, projects, samples, essays, visuals, and AI chats.
+
+The archive is not just storage. It is WABRO's memory.
+
+The aim is to make the archive searchable, connected, and AI-readable.
+
+The archive should eventually become a living knowledge graph that updates when I create new project saves, renders, stems, or notes.
+
+The system should be able to preserve history and lineage:
+
+Original track
+-> project versions
+-> stems
+-> samples
+-> snare versions
+-> plugin chains
+-> visual mappings
+-> AI analysis
+-> remixes/mutations
+-> public attribution
+
+
+11. AI COUNCIL IDEA
+
+I also imagine an "AI Council" for WABRO.
+
+Different AI agents could have different roles:
+
+- Core Architect AI
+- Producer AI
+- Sound Design AI
+- Snare AI
+- Visual Engine AI
+- EEG / State AI
+- Research AI
+- Business / Release AI
+- Archivist AI
+
+They should coordinate through readable notes and shared state rather than overwriting each other.
+
+Each role should contribute to the project while respecting the main rule:
+
+Build the instrument first.
+
+
+12. WHAT I NEED HELP WITH
+
+I need help thinking clearly about:
+
+- how to explain this project to other people
+- how to build the first working prototype
+- how to connect Muse 2 / EEG or simulated state to Bitwig
+- how to design the 8 macro system
+- how to create the snare geometry visualiser
+- how to structure the archive and knowledge graph
+- how to preserve Creative Commons attribution through remix/mutation
+- how to eventually turn this into a public platform
+- which existing tools, frameworks, research, or companies are relevant
+- how to describe the project without making it sound like generic AI music
+- how to keep the scope realistic
+
+
+13. WHAT GOOD ADVICE SHOULD FOCUS ON
+
+Good advice should focus on:
+
+- making the first instrument playable
+- mapping state to safe macro controls
+- using my existing music as source DNA
+- making the archive AI-readable
+- building a minimal demo before a platform
+- respecting Creative Commons Attribution
+- distinguishing real EEG/state mapping from exaggerated emotion claims
+- connecting music, visuals, AI, and archive into one coherent system
+
+Bad advice would be:
+
+- "just generate music with AI"
+- "build a whole platform first"
+- "make a generic music social network"
+- "use EEG as a magic emotion detector"
+- "ignore the snare system"
+- "ignore the archive"
+- "replace my sound design with AI"
+
+
+14. THE NORTH STAR
+
+If the project gets confusing, return to this:
+
+A living creative instrument
+that learns from my projects,
+maps that knowledge into state,
+and allows music, visuals, and EEG
+to mutate each other in real time.
+
+Then grow outward:
+
+Instrument
+-> knowledge graph
+-> creator tool
+-> open music mutation platform
+
+
+15. SUGGESTED REQUEST TO GOOGLE AI
+
+Please read the project explanation above and help me refine it.
+
+I want practical advice on how to make the first WABRO prototype real:
+
+Backwards V5 + Muse 2 or simulator + 8 macros + snare geometry + persistent state/logs.
+
+Please help me with:
+
+1. A clearer explanation of the project for non-technical people.
+2. A technical roadmap for the first prototype.
+3. Tools or frameworks that could help with EEG/OSC/MIDI/Bitwig/TouchDesigner/WebGL.
+4. Comparable projects, research areas, or companies I should study.
+5. Risks and scope traps to avoid.
+6. How to describe the long-term platform without losing the immediate instrument focus.
+
+Please do not treat this as generic AI music generation. Treat it as an open creative operating system built from real project files, musical identity, archive memory, state control, visuals, and remixable attribution.
